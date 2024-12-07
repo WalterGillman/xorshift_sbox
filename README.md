@@ -4,7 +4,7 @@ This source implements the xorshift algorithm as described in [1], specifically 
 
 The xorshift part uses the mininum triplet 1,1,3 that is also used by other sources and the algorithm in the paper adapted to 8 bits.
 
-After the xorshift step, the seed is passed through a series of Rijndael s-boxes using a table lookup to produce an 8-bit pseudo-random number.
+After the xorshift step, the seed is passed through a series of Rijndael s-boxes[2] using a table lookup to produce an 8-bit pseudo-random number.
 
 Note that the first two xorshifts and the last xorshift can be implemented as a table lookup as well so other triplets need not be less desirable in 8 bit cpus if memory is not an issue.
 
@@ -34,7 +34,9 @@ The 16 bit version can be used as a drop-in replacement for RND in BASIC
 20 PRINT FN r()
 ```
 
-[1] Marsaglia, George. (2003). Xorshift RNGs. Journal of Statistical Software. 08. 10.18637/jss.v008.i14. 
+[1] Marsaglia, George. (2003). Xorshift RNGs. Journal of Statistical Software. 08. 10.18637/jss.v008.i14.
+
+[2] Dworkin, M.J., Barker, E.B., Nechvatal, J., Foti, J., Bassham, L.E., Roback, E.A., & Dray, J.F. (2001). Advanced Encryption Standard (AES).
 
 contact: waltergillman@proton.me
 monero:44VDKbaBENcQvDQzY3Rjf2UzquTbzn4CLb96wEwDuVLPXuLT8YvVwD299T6VEDTCrbimpfh5Ke7YuLmqzAgSFCD4GWa8Kj4
