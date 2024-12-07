@@ -4,7 +4,7 @@ This source implements the xorshift algorithm as described in [1], specifically 
 
 The xorshift part uses the mininum triplet 1,1,3 that is also used by other sources and the algorithm in the paper adapted to 8 bits.
 
-After the xorshift step, the seed is passed through a series of Rijndael s-boxesusing a table lookup to produce an 8-bit pseudo-random number.
+After the xorshift step, the seed is passed through a series of Rijndael s-boxes using a table lookup to produce an 8-bit pseudo-random number.
 
 Note that the first two xorshifts and the last xorshift can be implemented as a table lookup as well so other triplets need not be less desirable in 8 bit cpus if memory is not an issue.
 
@@ -22,7 +22,17 @@ length= 4 gigabytes (2^32 bytes), time= 37.0 seconds
 
 Usual limitations of xorshift apply(seed cannot be zero).
 
-Included also is a z80 assembly implementation.
+Included also are the following ZX USR routines in z80 assembly:
+* xorshift_sbox.asm: A reference implementation(clobbers I)
+* xorshift_sbox_8.asm: A more optimized version 
+* xorshift_sbox_16.asm: A more optimized version returning 16 bits(clobbers I)
+
+The 16 bit version can be used as a drop-in replacement for RND in BASIC
+
+```
+10 DEF FN r()=(USR 32768)/65536
+20 PRINT FN r()
+```
 
 [1] Marsaglia, George. (2003). Xorshift RNGs. Journal of Statistical Software. 08. 10.18637/jss.v008.i14. 
 
