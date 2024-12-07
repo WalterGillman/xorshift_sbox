@@ -1,7 +1,7 @@
 org 8000h
 jr routine
 seed:
-db $00,$00,$00,$01
+db $01,$00,$00,$00
 
 routine:
 call xss
@@ -57,6 +57,7 @@ srl a
 srl a
 srl a
 xor e
+ld e,a
 ld a,i
 xor e
 ld e,a
