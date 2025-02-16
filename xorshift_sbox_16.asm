@@ -81,7 +81,6 @@ ld c, a; c => w
 xss2:
 ; note: this now uses Version 2 of the scrambling function
 ; x=d,y=e,z=b,w=c
-ld hl,sbox
 ld a,d
 xor c
 ld l,a
