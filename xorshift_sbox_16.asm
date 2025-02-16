@@ -39,19 +39,18 @@ xor b; a => w
 ld b, a; b => w
 ; a => DEAD
 xss1:
+; note: this now uses Version 2 of the scrambling function
 ; x=c,y=d,z=e,w=b
 ld hl,sbox
-ld l,c
-ld a,(hl)
-xor d
+ld a,c
+xor b
 ld l,a
 ld a,(hl)
+xor d
 xor e
 ld l,a
 ld a,(hl)
 xor b
-ld l,a
-ld a,(hl)
 
 savexss:
 ld i,a
@@ -80,19 +79,18 @@ ld c, a; c => w
 ; a => DEAD
 
 xss2:
+; note: this now uses Version 2 of the scrambling function
 ; x=d,y=e,z=b,w=c
 ld hl,sbox
-ld l,d
-ld a,(hl)
-xor e
+ld a,d
+xor c
 ld l,a
 ld a,(hl)
+xor e
 xor b
 ld l,a
 ld a,(hl)
 xor c
-ld l,a
-ld a,(hl)
 
 save:
 ld hl,seed
