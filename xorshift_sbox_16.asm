@@ -1,11 +1,6 @@
 org 8000h
-jr routine
 seed:
 db $01,$00,$00,$00
-
-routine:
-call xss
-ret
 
 xss:
 load:
@@ -107,7 +102,103 @@ ld a,i
 ld b,a
 ret
 
-xorshift:
+org 8060h
+srand:
+ld hl,(23563)
+inc hl
+inc hl
+inc hl
+inc hl
+ld b,(hl)
+inc hl
+ld c,(hl)
+xor a
+ld e,a
+inc a
+ld d,a
+jr save
+org 8070h
+uni:
+call xss
+ld hl,(23563)
+inc hl
+inc hl
+inc hl
+inc hl
+ld e,(hl)
+inc hl
+ld d,(hl)
+ld h,d
+ld l,e
+ld a,h
+and a
+jr z, dobottom
+dotop:
+srl a
+or h
+ld h, a
+srl a
+or h
+ld h, a
+srl a
+or h
+ld h, a
+srl a
+or h
+ld h, a
+srl a
+or h
+ld h, a
+srl a
+or h
+ld h, a
+srl a
+or h
+ld h, a
+srl a
+or h
+ld h, a
+ld l,$FF
+endtop:
+jr mask
+dobottom:
+ld a,l
+srl a
+or l
+ld l, a
+srl a
+or l
+ld l, a
+srl a
+or l
+ld l, a
+srl a
+or l
+ld l, a
+srl a
+or l
+ld l, a
+srl a
+or l
+ld l, a
+srl a
+or l
+ld l, a
+srl a
+or l
+ld l, a
+mask:
+and c
+ld l,a
+ld a,h
+and b
+ld h,a
+ex de,hl
+sbc hl,de
+jr c,uni
+ld b,d
+ld c,e
+ret
 
 org 8100h
 sbox:

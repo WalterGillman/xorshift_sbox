@@ -25,13 +25,20 @@ Usual limitations of xorshift apply(seed cannot be zero).
 Included also are the following ZX USR routines in z80 assembly:
 * xorshift_sbox.asm: A reference implementation(clobbers I)
 * xorshift_sbox_8.asm: A more optimized version 
-* xorshift_sbox_16.asm: A more optimized version returning 16 bits(clobbers I)
+* xorshift_sbox_16.asm: A more optimized version returning 16 bits(clobbers I); including a seeding and a uniform random number function.
 
 The 16 bit version can be used as a drop-in replacement for RND in BASIC
 
 ```
-10 DEF FN r()=(USR 32768)/65536
+10 DEF FN r()=(USR 32772)/65536
 20 PRINT FN r()
+```
+
+It is also possible to use the void seeding function T(a) for RANDOMIZE and the uniform random-integer-returning U(a) function for RND*(a+1) which is a common sight in BASIC programs but produces biased pseudo-random numbers.
+
+```
+9010 DEF FN T(a)=USR 32864
+9010 DEF FN U(a)=USR 32880
 ```
 
 ## Description
